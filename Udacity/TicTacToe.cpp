@@ -67,5 +67,74 @@ void Board::MakeMove(Board* gamingBoard, string* playerName, char playerSign)
 			cin >> playersChoosenPosition;
 		}
 	}
+}
 
+int Board::checkFourInARow(Board* gamingBoard) 
+{
+	// check horizontal rows
+	char firstSymbol;
+	char nextSymbol;
+	int row = 0;
+	int i = 0;
+	int column = 0;
+	int counter=0;
+	
+
+	// check horizontal rows
+	for (row =0; row<16;row =row+4)
+	{
+		firstSymbol = gamingBoard->boardPosition[row];
+		if (firstSymbol != '_')
+		{
+			while (i < 4)
+			{
+				nextSymbol = gamingBoard->boardPosition[i + row];
+				//cout << "First Symbol ist: " << firstSymbol << "   NextSymbol ist: " << nextSymbol << "   board Position ist: " << i+row << "\n\n";
+				if (firstSymbol == nextSymbol)
+				{
+					if (i == 3)
+					{
+						return 0;
+					}
+					i += 1;
+				}
+				else //less than 4 in a row, check next horizontal row
+				{
+					break;
+				}
+			}
+			i = 0;
+		}
+	}
+
+	// check vertical
+	i = 0;
+	for (column = 0; column < 4;column++)
+	{
+		firstSymbol = gamingBoard->boardPosition[column];
+		if (firstSymbol != '_')
+		{
+			while (i < 16)
+			{
+				nextSymbol = gamingBoard->boardPosition[i + column];
+				//cout << "First Symbol ist: " << firstSymbol << "   NextSymbol ist: " << nextSymbol << "   board Position ist: " << i+column << "\n\n";
+				if (firstSymbol == nextSymbol)
+				{
+					counter += 1;
+					if (counter == 4)
+					{
+						return 0;
+					}
+					i += 4;
+				}
+				else //less than 4 in a row, check next column
+				{
+					break;
+				}
+			}
+			counter = 0;
+			i = 0;
+		}
+	}
+	return -1;
 }

@@ -10,5 +10,6 @@ public:
 	void DrawBoard();
 	void SetPlayer(string* playerX, string* playerO);
 	void MakeMove(Board *gamingBoard, string* playerName, char playerSign);
+	int checkFourInARow(Board* gamingBoard);
 };
 
