@@ -14,7 +14,7 @@ int main() {
 	int playedRounds = 0;
 
 	playBoard.SetPlayer(&playerX, &playerO);	// Ask for player names
-	playBoard.DrawBoard();						// Draw the empty gameboard
+	playBoard.DrawPossibleBoardPositions();					// Draw the empty gameboard with numbered positions
 
 	while (playedRounds < maxPossibleRounds)
 	{
@@ -24,6 +24,9 @@ int main() {
 		*/
 		playBoard.MakeMove(&playBoard, &playerX, 'X');
 		playBoard.DrawBoard();
+		cout << "\n";
+		playBoard.DrawPossibleBoardPositions();
+
 		if (playBoard.checkFourInARow(&playBoard) == 0)
 		{
 			cout << playerX << " has won the game!!!\n";
@@ -33,6 +36,8 @@ int main() {
 
 		playBoard.MakeMove(&playBoard, &playerO, 'O');
 		playBoard.DrawBoard();
+		cout << "\n";
+		playBoard.DrawPossibleBoardPositions();
 		if (playBoard.checkFourInARow(&playBoard) == 0)
 		{
 			cout << playerO << " has won the game!!!\n";
